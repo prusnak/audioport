@@ -1,3 +1,2 @@
-*.o
-Makefile
-proto
+prototype-build-desktop
+prototype.pro.user
