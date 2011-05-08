@@ -38,7 +38,6 @@ bool Audio::setup() {
 }
 
 void Audio::send(QString str) {
-	QBuffer buf;
 	for (int i = 0; i < 1000; ++i) {
 		buf.write("\x40\x40\x40\x40\x40\x40\x40\x40\xC0\xC0\xC0\xC0\xC0\xC0\xC0\xC0");
 	}

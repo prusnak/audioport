@@ -15,6 +15,7 @@ public:
 private:
 	QAudioInput* input;
 	QAudioOutput* output;
+	QBuffer buf;
 private slots:
 	void finishedPlaying(QAudio::State state);
 };
