@@ -1,12 +1,11 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2011-05-08T14:10:45
-#
-#-------------------------------------------------
-
-QT       += core gui multimedia
+QT       += core gui
 TARGET    = prototype
 TEMPLATE  = app
 SOURCES  += main.cpp mainwindow.cpp audio.cpp
 HEADERS  += mainwindow.h audio.h
 FORMS    += mainwindow.ui
+
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += portaudio-2.0
+}

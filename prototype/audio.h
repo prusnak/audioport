@@ -1,24 +1,21 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include <QtMultimedia>
+#include <portaudio.h>
 
-class Audio : public QObject
+int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData);
+
+class Audio
 {
-	Q_OBJECT
-
 public:
 	Audio();
 	~Audio();
 	bool setup();
-	void send(QString str, int channel);
+	QString tosend1;
+	QString tosend2;
 private:
-	QAudioInput* input;
-	QAudioOutput* output;
-	QBuffer buf;
-	void genchar(const char *cstr, int len, int channel);
-private slots:
-	void finishedPlaying(QAudio::State state);
+	PaStream *stream;
+	PaError err;
 };
 
 #endif // AUDIO_H
