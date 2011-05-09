@@ -1,0 +1,11 @@
+Build instructions:
+
+  mkdir _build
+  cd _build
+  qmake ..
+  make
+
+Required packages:
+
+libqt4-dev   portaudio19-dev (Maemo)
+libqt4-devel portaudio-devel (openSUSE)
