@@ -11,11 +11,12 @@ public:
 	Audio();
 	~Audio();
 	bool setup();
-	void send(QString str);
+	void send(QString str, int channel);
 private:
 	QAudioInput* input;
 	QAudioOutput* output;
 	QBuffer buf;
+	void genchar(const char *cstr, int len, int channel);
 private slots:
 	void finishedPlaying(QAudio::State state);
 };
