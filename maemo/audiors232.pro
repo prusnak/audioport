@@ -1,5 +1,5 @@
 QT       += core gui
-TARGET    = prototype
+TARGET    = audiors232
 TEMPLATE  = app
 SOURCES  += main.cpp mainwindow.cpp audio.cpp
 HEADERS  += mainwindow.h audio.h
