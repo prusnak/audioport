@@ -23,10 +23,15 @@ QString MainWindow::getEOL() {
 	return "";
 }
 
+#define MAXITEMS 17
+
 void MainWindow::on_editTX_returnPressed()
 {
 	if (ui->editTX->text().length() == 0) return;
 	ui->listTX->addItem(ui->editTX->text());
+	if (ui->listTX->count() > MAXITEMS) {
+		ui->listTX->takeItem(0);
+	}
 	audio->send1 += ui->editTX->text() + getEOL();
 	ui->editTX->setText("");
 }
@@ -35,6 +40,9 @@ void MainWindow::on_editTX2_returnPressed()
 {
 	if (ui->editTX2->text().length() == 0) return;
 	ui->listTX2->addItem(ui->editTX2->text());
+	if (ui->listTX2->count() > MAXITEMS) {
+		ui->listTX2->takeItem(0);
+	}
 	audio->send2 += ui->editTX2->text() + getEOL();
 	ui->editTX2->setText("");
 }
