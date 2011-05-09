@@ -1,11 +1,12 @@
-#include "audio.h"
 #include <math.h>
+#include "audio.h"
 
 Audio::Audio()
 {
 }
 
-Audio::~Audio() {
+Audio::~Audio()
+{
 	Pa_StopStream(stream);
 	Pa_CloseStream(stream);
 	Pa_Terminate();
@@ -16,7 +17,8 @@ Audio::~Audio() {
 #define WAITLEN ((TOTALLEN)-10*(BITLEN))
 #define VALUE (0.75f)
 
-bool Audio::setup() {
+bool Audio::setup()
+{
 	err = Pa_Initialize();
 	if (err != paNoError) return false;
 	err = Pa_OpenDefaultStream(&stream, 2, 2, paFloat32, 48000, TOTALLEN, paCallback, this);
@@ -26,7 +28,8 @@ bool Audio::setup() {
 	return true;
 }
 
-int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData) {
+int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData)
+{
 	Audio *audio = (Audio *)userData;
 	float *out = (float *)outputBuffer;
 	const float *in = (const float *)inputBuffer;

@@ -5,16 +5,16 @@
 #include "audio.h"
 
 namespace Ui {
-    class MainWindow;
+	class MainWindow;
 }
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+	explicit MainWindow(QWidget *parent = 0);
+	~MainWindow();
 	inline void setAudio(Audio *audio) { this->audio = audio; }
 
 private slots:
@@ -22,7 +22,7 @@ private slots:
 	void on_editTX2_returnPressed();
 
 private:
-    Ui::MainWindow *ui;
+	Ui::MainWindow *ui;
 	Audio *audio;
 	QString getEOL();
 };

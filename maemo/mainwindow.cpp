@@ -2,19 +2,20 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+	QMainWindow(parent),
+	ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 	audio = NULL;
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+	delete ui;
 }
 
-QString MainWindow::getEOL() {
+QString MainWindow::getEOL()
+{
 	switch (ui->comboEOL->currentIndex()) {
 		case 1: return "\r";
 		case 2: return "\r\n";
