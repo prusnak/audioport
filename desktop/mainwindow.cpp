@@ -24,7 +24,7 @@ QString MainWindow::getEOL()
 	return "";
 }
 
-#define MAXITEMS 17
+#define MAXITEMS 16
 
 void MainWindow::on_editTX_returnPressed()
 {
