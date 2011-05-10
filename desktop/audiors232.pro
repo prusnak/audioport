@@ -1,8 +1,8 @@
 QT       += core gui
 TARGET    = audiors232
 TEMPLATE  = app
-SOURCES  += main.cpp mainwindow.cpp audio.cpp
-HEADERS  += mainwindow.h audio.h
+SOURCES  += app.cpp mainwindow.cpp audiors232.cpp
+HEADERS  += mainwindow.h audiors232.h
 FORMS    += mainwindow.ui
 
 unix {

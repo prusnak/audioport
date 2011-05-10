@@ -6,11 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
-	audio = NULL;
+	serial = new AudioRS232();
 }
 
 MainWindow::~MainWindow()
 {
+	delete serial;
 	delete ui;
 }
 
@@ -33,7 +34,7 @@ void MainWindow::on_editTX_returnPressed()
 	if (ui->listTX->count() > MAXITEMS) {
 		ui->listTX->takeItem(0);
 	}
-	audio->send1 += ui->editTX->text() + getEOL();
+	serial->send( (ui->editTX->text() + getEOL()).toLatin1().constData() );
 	ui->editTX->setText("");
 }
 
@@ -44,6 +45,6 @@ void MainWindow::on_editTX2_returnPressed()
 	if (ui->listTX2->count() > MAXITEMS) {
 		ui->listTX2->takeItem(0);
 	}
-	audio->send2 += ui->editTX2->text() + getEOL();
+	serial->send2( (ui->editTX2->text() + getEOL()).toLatin1().constData() );
 	ui->editTX2->setText("");
 }

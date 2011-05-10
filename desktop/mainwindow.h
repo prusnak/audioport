@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "audio.h"
+#include "audiors232.h"
 
 namespace Ui {
 	class MainWindow;
@@ -15,7 +15,6 @@ class MainWindow : public QMainWindow
 public:
 	explicit MainWindow(QWidget *parent = 0);
 	~MainWindow();
-	inline void setAudio(Audio *audio) { this->audio = audio; }
 
 private slots:
 	void on_editTX_returnPressed();
@@ -23,8 +22,8 @@ private slots:
 
 private:
 	Ui::MainWindow *ui;
-	Audio *audio;
+	AudioRS232 *serial;
 	QString getEOL();
 };
 
-#endif // MAINWINDOW_H
+#endif
