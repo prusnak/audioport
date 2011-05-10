@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "audiors232.h"
+#include "audiors232-portaudio.h"
 
 namespace Ui {
 	class MainWindow;
