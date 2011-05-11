@@ -1,3 +1,5 @@
+#include "audiors232-common.h"
+
 void convertSend(short *buf, short c1, short c2, short value, int buflen, int bitlen)
 {
 	// start bit
@@ -56,5 +58,41 @@ void convertSend(short *buf, short c1, short c2, short value, int buflen, int bi
 		*buf++ = 0;
 		// right
 		*buf++ = 0;
+	}
+}
+
+CyclicBuffer::CyclicBuffer(int _size) : size(_size), start(0), end(0)
+{
+	buf = new char[size];
+}
+
+CyclicBuffer::~CyclicBuffer()
+{
+	delete buf;
+}
+
+void CyclicBuffer::put(const char c)
+{
+	if (end + 1 == start) return;
+	buf[end] = c;
+	end = (end + 1) % size;
+}
+
+void CyclicBuffer::put(const char *str)
+{
+	for (const char *i = str; (*i) && (end + 1 != start); ++i) {
+		buf[end] = *i;
+		end = (end + 1) % size;
+	}
+}
+
+short CyclicBuffer::get()
+{
+	if (start != end) {
+		short r = buf[start];
+		start = (start + 1) % size;
+		return r;
+	} else {
+		return -1;
 	}
 }

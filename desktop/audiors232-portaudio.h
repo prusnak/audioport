@@ -2,6 +2,7 @@
 #define AUDIORS232_PORTAUDIO_H
 
 #include <portaudio.h>
+#include "audiors232-common.h"
 
 class AudioRS232
 {
@@ -10,13 +11,9 @@ public:
 	~AudioRS232();
 	void send(const char *str);
 	void send2(const char *str);
-//private:
+	CyclicBuffer *cb1, *cb2;
+private:
 	PaStream *stream;
-	char *buf1;
-	char *buf2;
-	int bufsize;
-	int start1, start2;
-	int end1, end2;
 };
 
 int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData);
