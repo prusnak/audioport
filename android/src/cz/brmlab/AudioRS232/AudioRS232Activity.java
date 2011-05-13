@@ -35,33 +35,29 @@ public class AudioRS232Activity extends Activity {
 	}
 
 	void setupSound() {
-		int minPlaySize = AudioTrack.getMinBufferSize(48000,
-				AudioFormat.CHANNEL_CONFIGURATION_STEREO,
-				AudioFormat.ENCODING_PCM_16BIT);
-		int minRecSize = AudioRecord.getMinBufferSize(48000,
-				AudioFormat.CHANNEL_CONFIGURATION_STEREO,
-				AudioFormat.ENCODING_PCM_16BIT);
-
-		soundplay = new short[minPlaySize];
-		soundrec = new short[minRecSize];
-		for (int i = 0; i < minPlaySize; ++i) {
-			soundplay[i] = (short)(i * 30000 / minPlaySize);
+		int playSize = 48000;
+		int recSize = 48000;
+		soundplay = new short[playSize];
+		soundrec = new short[recSize];
+		for (int i = 0; i < playSize; ++i) {
+			soundplay[i] = (short)(i * 30000 / playSize * 440);
 		}
 		audiotrack = new AudioTrack(AudioManager.STREAM_MUSIC, 48000,
 				AudioFormat.CHANNEL_CONFIGURATION_STEREO,
-				AudioFormat.ENCODING_PCM_16BIT, minPlaySize,
+				AudioFormat.ENCODING_PCM_16BIT, playSize,
 				AudioTrack.MODE_STREAM);
 		audiorecord = new AudioRecord(
 				MediaRecorder.AudioSource.MIC, 48000,
 				AudioFormat.CHANNEL_CONFIGURATION_MONO,
-				AudioFormat.ENCODING_PCM_16BIT, minRecSize);
+				AudioFormat.ENCODING_PCM_16BIT, recSize);
 		audiotrack.play();
-		audiorecord.startRecording();
+//		audiorecord.startRecording();
 	}
 
 	void processSound() {
+//		audiorecord.read(soundrec, 0, soundrec.length);
+//		soundplay = soundrec;
 		audiotrack.write(soundplay, 0, soundplay.length);
-		audiorecord.read(soundrec, 0, soundrec.length);
 	}
 
 }
