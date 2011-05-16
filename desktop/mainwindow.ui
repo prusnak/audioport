@@ -23,6 +23,9 @@
       <height>391</height>
      </rect>
     </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
+    </property>
    </widget>
    <widget class="QLabel" name="labelRX">
     <property name="geometry">
@@ -74,6 +77,9 @@
       <width>261</width>
       <height>391</height>
      </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
     </property>
    </widget>
    <widget class="QComboBox" name="comboEOL">
@@ -143,6 +149,9 @@
       <width>251</width>
       <height>391</height>
      </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
     </property>
    </widget>
    <widget class="QLabel" name="labelEOL">
