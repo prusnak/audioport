@@ -13,8 +13,7 @@ import android.media.AudioTrack;
 
 public class AudioRS232 {
 
-	private Queue<Character> b1;
-	private Queue<Character> b2;
+	private Queue<Character> queue;
 	private short[] soundplay;
 //	private short[] soundrec;
 	private AudioTrack audiotrack;
@@ -22,8 +21,7 @@ public class AudioRS232 {
 	private int bufSize = 9600;
 
 	public AudioRS232() {
-		b1 = new LinkedList<Character>();
-		b2 = new LinkedList<Character>();
+		queue = new LinkedList<Character>();
 		soundplay = new short[bufSize];
 //		soundrec = new short[bufSize];
 		for (int i = 0; i < bufSize; ++i) {
@@ -38,14 +36,7 @@ public class AudioRS232 {
 	public void send(String str) {
 		CharacterIterator it = new StringCharacterIterator(str);
 		for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
-			b1.add(c);
-		}
-	}
-
-	public void send2(String str) {
-		CharacterIterator it = new StringCharacterIterator(str);
-		for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
-			b2.add(c);
+			queue.add(c);
 		}
 	}
 

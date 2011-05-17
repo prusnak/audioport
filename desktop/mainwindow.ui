@@ -14,68 +14,23 @@
    <string>Audio RS-232</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="listTX">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>40</y>
-      <width>251</width>
-      <height>391</height>
-     </rect>
-    </property>
-    <property name="selectionMode">
-     <enum>QAbstractItemView::NoSelection</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelRX">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>261</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RX</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="TX">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>10</y>
-      <width>251</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TX</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="editTX">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>10</x>
       <y>440</y>
-      <width>251</width>
+      <width>621</width>
       <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listRX">
+   <widget class="QListWidget" name="listComm">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
-      <width>261</width>
-      <height>391</height>
+      <y>10</y>
+      <width>401</width>
+      <height>421</height>
      </rect>
     </property>
     <property name="selectionMode">
@@ -85,7 +40,7 @@
    <widget class="QComboBox" name="comboEOL">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>690</x>
       <y>440</y>
       <width>101</width>
       <height>31</height>
@@ -115,49 +70,10 @@
      </property>
     </item>
    </widget>
-   <widget class="QLineEdit" name="editTX2">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>440</y>
-      <width>251</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelTX2">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>10</y>
-      <width>251</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TX2</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="listTX2">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>40</y>
-      <width>251</width>
-      <height>391</height>
-     </rect>
-    </property>
-    <property name="selectionMode">
-     <enum>QAbstractItemView::NoSelection</enum>
-    </property>
-   </widget>
    <widget class="QLabel" name="labelEOL">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>650</x>
       <y>440</y>
       <width>31</width>
       <height>31</height>
@@ -165,22 +81,6 @@
     </property>
     <property name="text">
      <string>EOL:</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushPresets">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>440</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Presets</string>
-    </property>
-    <property name="checkable">
-     <bool>true</bool>
     </property>
    </widget>
   </widget>

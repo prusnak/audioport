@@ -10,8 +10,7 @@ public:
 	AudioRS232();
 	~AudioRS232();
 	void send(const char *str);
-	void send2(const char *str);
-	CyclicBuffer *cb1, *cb2;
+	CyclicBuffer *cb;
 private:
 	PaStream *stream;
 };

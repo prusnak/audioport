@@ -8,8 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	presetButtons = new PresetButton *[40];
-	for (int i = 0; i < 40; ++i) {
+	presetButtons = new PresetButton *[20];
+	for (int i = 0; i < 20; ++i) {
 		presetButtons[i] = new PresetButton(this, i);
 	}
 
@@ -33,24 +33,15 @@ QString MainWindow::getEOL()
 	return "";
 }
 
-#define MAXITEMS 16
+#define MAXITEMS 18
 
 void MainWindow::sendTX(QString str)
 {
-	ui->listTX->addItem(str);
-	if (ui->listTX->count() > MAXITEMS) {
-		ui->listTX->takeItem(0);
+	ui->listComm->addItem(str.prepend("> "));
+	if (ui->listComm->count() > MAXITEMS) {
+		ui->listComm->takeItem(0);
 	}
 	serial->send( (str + getEOL()).toLatin1().constData() );
-}
-
-void MainWindow::sendTX2(QString str)
-{
-	ui->listTX2->addItem(str);
-	if (ui->listTX2->count() > MAXITEMS) {
-		ui->listTX2->takeItem(0);
-	}
-	serial->send2( (str + getEOL()).toLatin1().constData() );
 }
 
 void MainWindow::on_editTX_returnPressed()
@@ -59,33 +50,3 @@ void MainWindow::on_editTX_returnPressed()
 	sendTX(ui->editTX->text());
 	ui->editTX->setText("");
 }
-
-void MainWindow::on_editTX2_returnPressed()
-{
-	if (ui->editTX2->text().length() == 0) return;
-	sendTX2(ui->editTX2->text());
-	ui->editTX2->setText("");
-}
-
-void MainWindow::on_pushPresets_clicked(bool checked)
-{
-	ui->listTX->setVisible(!checked);
-	ui->listTX2->setVisible(!checked);
-	for (int i = 0; i < 40; ++i) {
-		presetButtons[i]->setVisible(checked);
-	}
-}
-
-/*
-void MainWindow::presetButton_clicked(int which)
-{
-	QString str = presetButtons[which]->text();
-	if (which < 20) {
-		sendTX(str);
-		serial->send( (str + getEOL()).toLatin1().constData() );
-	} else {
-		sendTX2(str);
-		serial->send2( (str + getEOL()).toLatin1().constData() );
-	}
-}
-*/
