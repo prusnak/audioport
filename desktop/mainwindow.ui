@@ -14,80 +14,175 @@
    <string>Audio RS-232</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="labelRX">
-      <property name="text">
-       <string>RX</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
+   <widget class="QListWidget" name="listTX">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>40</y>
+      <width>251</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelRX">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>261</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RX</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="TX">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>251</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TX</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="editTX">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>440</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listRX">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>261</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboEOL">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>440</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>none</string>
+     </property>
     </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="TX">
-      <property name="text">
-       <string>TX</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>CR</string>
+     </property>
     </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="labelTX2">
-      <property name="text">
-       <string>TX2</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>CR LF</string>
+     </property>
     </item>
-    <item row="1" column="0">
-     <widget class="QListWidget" name="listRX"/>
+    <item>
+     <property name="text">
+      <string>LF</string>
+     </property>
     </item>
-    <item row="1" column="1">
-     <widget class="QListWidget" name="listTX"/>
-    </item>
-    <item row="1" column="2">
-     <widget class="QListWidget" name="listTX2"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QComboBox" name="comboEOL">
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <item>
-       <property name="text">
-        <string>none</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>CR</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>CR LF</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>LF</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="editTX"/>
-    </item>
-    <item row="2" column="2">
-     <widget class="QLineEdit" name="editTX2"/>
-    </item>
-   </layout>
+   </widget>
+   <widget class="QLineEdit" name="editTX2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>440</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelTX2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>10</y>
+      <width>251</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TX2</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listTX2">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>40</y>
+      <width>251</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelEOL">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>440</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>EOL:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushPresets">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>440</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Presets</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

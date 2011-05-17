@@ -2,18 +2,8 @@ package cz.brmlab.AudioRS232;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.media.AudioManager;
-import android.media.AudioRecord;
-import android.media.AudioTrack;
-import android.media.AudioFormat;
-import android.media.MediaRecorder;
 
 public class AudioRS232Activity extends Activity {
-
-	public short[] soundplay;
-	public short[] soundrec;
-	public AudioTrack audiotrack;
-	public AudioRecord audiorecord;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
