@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>440</y>
-      <width>591</width>
+      <width>401</width>
       <height>31</height>
      </rect>
     </property>
@@ -40,9 +40,9 @@
    <widget class="QComboBox" name="comboEOL">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>470</x>
       <y>440</y>
-      <width>131</width>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -73,7 +73,7 @@
    <widget class="QLabel" name="labelEOL">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>420</x>
       <y>440</y>
       <width>51</width>
       <height>31</height>
@@ -83,8 +83,41 @@
      <string>EOL =</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushExit">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>440</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushAbout">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>440</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>About</string>
+    </property>
+   </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>listComm</tabstop>
+  <tabstop>editTX</tabstop>
+  <tabstop>comboEOL</tabstop>
+  <tabstop>pushAbout</tabstop>
+  <tabstop>pushExit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

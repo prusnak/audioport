@@ -20,6 +20,8 @@ public:
 
 private slots:
 	void on_editTX_returnPressed();
+	void on_pushAbout_clicked();
+	void on_pushExit_clicked();
 
 private:
 	Ui::MainWindow *ui;
