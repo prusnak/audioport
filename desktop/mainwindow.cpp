@@ -10,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	presetButtons = new PresetButton *[20];
-	for (int i = 0; i < 20; ++i) {
+	presetButtons = new PresetButton *[14];
+	for (int i = 0; i < 14; ++i) {
 		presetButtons[i] = new PresetButton(this, i);
 	}
 
