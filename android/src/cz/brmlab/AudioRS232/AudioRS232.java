@@ -24,9 +24,6 @@ public class AudioRS232 {
 		queue = new LinkedList<Character>();
 		soundplay = new short[bufSize];
 //		soundrec = new short[bufSize];
-		for (int i = 0; i < bufSize; ++i) {
-			soundplay[i] = (short)(i * 30000 / bufSize);
-		}
 		audiotrack = new AudioTrack(AudioManager.STREAM_MUSIC, 48000, AudioFormat.CHANNEL_CONFIGURATION_STEREO, AudioFormat.ENCODING_PCM_16BIT, bufSize * 2, AudioTrack.MODE_STREAM);
 //		audiorecord = new AudioRecord(MediaRecorder.AudioSource.MIC, 48000, AudioFormat.CHANNEL_CONFIGURATION_MONO, AudioFormat.ENCODING_PCM_16BIT, bufSize * 2);
 		audiotrack.play();
@@ -41,7 +38,16 @@ public class AudioRS232 {
 	}
 
 	public void loop() {
-		// audiotrack.write(soundplay, 0, soundplay.length * 2);
+		for (;;) {
+			convertSend();
+			audiotrack.write(soundplay, 0, soundplay.length * 2);
+		}
+	}
+
+	public void convertSend() {
+		for (int i = 0; i < bufSize; ++i) {
+			soundplay[i] = (short)(880 * (i/2) % 32000);
+		}
 	}
 
 }
