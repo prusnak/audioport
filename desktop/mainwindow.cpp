@@ -33,15 +33,28 @@ QString MainWindow::getEOL()
 	return "";
 }
 
-#define MAXITEMS 18
+QString MainWindow::escape(QString str)
+{
+	QString::ConstIterator it = str.begin();
+	QString::ConstIterator ite = str.end();
+	QString newstr;
+	for (; it != ite; ++it) {
+		if (it->toLatin1() < ' ') {
+			QString hex("%1");
+			newstr += hex.arg(it->toLatin1(), 2, 16, QChar('0')).toUpper().prepend("\\x");
+		} else {
+			newstr += *it;
+		}
+	}
+	return newstr;
+}
 
 void MainWindow::sendTX(QString str)
 {
 	ui->listComm->addItem(str.prepend("> "));
-	if (ui->listComm->count() > MAXITEMS) {
-		ui->listComm->takeItem(0);
-	}
-	serial->send( (str + getEOL()).toLatin1().constData() );
+	ui->listComm->setCurrentRow(ui->listComm->count() - 1);
+	str += getEOL();
+	serial->send( str.toLatin1().constData() );
 }
 
 void MainWindow::on_editTX_returnPressed()

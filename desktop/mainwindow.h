@@ -26,6 +26,7 @@ private:
 	PresetButton **presetButtons;
 	AudioRS232 *serial;
 	QString getEOL();
+	QString escape(QString str);
 };
 
 #endif
