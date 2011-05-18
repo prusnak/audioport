@@ -10,7 +10,11 @@ int main(int argc, char *argv[])
 	QCoreApplication::setApplicationName("AudioRS232");
 
 	MainWindow window;
+#ifdef Q_WS_MAEMO_5
+	window.showFullScreen();
+#else
 	window.show();
+#endif
 
 	return app.exec();
 }

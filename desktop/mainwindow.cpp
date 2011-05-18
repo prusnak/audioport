@@ -1,5 +1,6 @@
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QDebug>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -15,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	}
 
 	serial = new AudioRS232();
+	qDebug() << serial->start();
 }
 
 MainWindow::~MainWindow()

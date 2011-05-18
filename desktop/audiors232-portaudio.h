@@ -9,6 +9,7 @@ class AudioRS232
 public:
 	AudioRS232();
 	~AudioRS232();
+	bool start();
 	void send(const char *str);
 	CyclicBuffer *cb;
 private:
