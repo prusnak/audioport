@@ -1,6 +1,6 @@
 #include "audiors232-common.h"
 
-void convertSend(short *buf, short character, short value, int buflen, int bitlen)
+void convertSend(short *buf, short character, short value, int bitlen)
 {
 	// start bit
 	for (int i = 0; i < bitlen; ++i) {
@@ -41,7 +41,7 @@ void convertSend(short *buf, short character, short value, int buflen, int bitle
 	}
 
 	// wait
-	for (int i = 0; i < buflen - 10 * bitlen; ++i) {
+	for (int i = 0; i < 6 * bitlen; ++i) {
 		// left
 		*buf++ = 0;
 		// right

@@ -1,8 +1,10 @@
 #include <limits.h>
 #include "audiors232-portaudio.h"
 
+#include <stdio.h>
+
 #define SAMPRATE 48000
-#define CHARLEN 128
+#define FRAMES 8192
 #define BITLEN 8
 
 AudioRS232::AudioRS232()
@@ -22,7 +24,7 @@ bool AudioRS232::start()
 {
 	if (paNoError != Pa_Initialize())
 		return false;
-	if (paNoError != Pa_OpenDefaultStream(&stream, 2, 2, paInt16, SAMPRATE, CHARLEN, paCallback, this))
+	if (paNoError != Pa_OpenDefaultStream(&stream, 2, 2, paInt16, SAMPRATE, FRAMES, paCallback, this))
 		return false;
 	if (paNoError != Pa_StartStream(stream))
 		return false;
@@ -32,7 +34,12 @@ bool AudioRS232::start()
 int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData)
 {
 	AudioRS232 *audio = (AudioRS232 *)userData;
-	convertSend((short *)outputBuffer, audio->cb->get(), SHRT_MAX, framesPerBuffer, BITLEN);
+	short *buf = (short *)outputBuffer;
+	for (unsigned long i = 0; i < framesPerBuffer / BITLEN / 16; ++i) {
+		//convertSend will write 16 * BITLEN frames
+		convertSend(buf, audio->cb->get(), SHRT_MAX, BITLEN);
+		buf += 16 * BITLEN * 2;
+	}
 	return paContinue;
 }
 

@@ -1,7 +1,7 @@
 #ifndef AUDIORS232_COMMON_H
 #define AUDIORS232_COMMON_H
 
-void convertSend(short *buf, short character, short value, int buflen, int bitlen);
+void convertSend(short *buf, short character, short value, int bitlen);
 
 class CyclicBuffer
 {
