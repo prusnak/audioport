@@ -1,9 +1,9 @@
-package cz.brmlab.AudioRS232;
+package cz.brmlab.AudioPort;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class AudioRS232Activity extends Activity {
+public class AudioPortActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

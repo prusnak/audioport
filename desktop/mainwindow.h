@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "audiors232-portaudio.h"
+#include "audioport-portaudio.h"
 #include "presetbutton.h"
 
 namespace Ui {
@@ -26,7 +26,7 @@ private slots:
 private:
 	Ui::MainWindow *ui;
 	PresetButton **presetButtons;
-	AudioRS232 *serial;
+	AudioPort *serial;
 	QString getEOL();
 	QString escape(QString str);
 };

@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package cz.brmlab.AudioRS232;
+package cz.brmlab.AudioPort;
 
 public final class R {
     public static final class attr {

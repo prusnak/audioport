@@ -1,5 +1,5 @@
-#ifndef AUDIORS232_COMMON_H
-#define AUDIORS232_COMMON_H
+#ifndef AUDIOPORT_COMMON_H
+#define AUDIOPORT_COMMON_H
 
 void convertSend(short *buf, short character, short value, int bitlen);
 

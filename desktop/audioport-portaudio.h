@@ -1,14 +1,14 @@
-#ifndef AUDIORS232_PORTAUDIO_H
-#define AUDIORS232_PORTAUDIO_H
+#ifndef AUDIOPORT_PORTAUDIO_H
+#define AUDIOPORT_PORTAUDIO_H
 
 #include <portaudio.h>
-#include "audiors232-common.h"
+#include "audioport-common.h"
 
-class AudioRS232
+class AudioPort
 {
 public:
-	AudioRS232();
-	~AudioRS232();
+	AudioPort();
+	~AudioPort();
 	bool start();
 	void send(const char *str);
 	CyclicBuffer *cb;

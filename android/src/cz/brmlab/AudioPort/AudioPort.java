@@ -1,4 +1,4 @@
-package cz.brmlab.AudioRS232;
+package cz.brmlab.AudioPort;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -11,7 +11,7 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 //import android.media.MediaRecorder;
 
-public class AudioRS232 {
+public class AudioPort {
 
 	private Queue<Character> queue;
 	private short[] soundplay;
@@ -20,7 +20,7 @@ public class AudioRS232 {
 //	private AudioRecord audiorecord;
 	private int bufSize = 9600;
 
-	public AudioRS232() {
+	public AudioPort() {
 		queue = new LinkedList<Character>();
 		soundplay = new short[bufSize];
 //		soundrec = new short[bufSize];

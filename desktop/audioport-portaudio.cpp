@@ -1,5 +1,5 @@
 #include <limits.h>
-#include "audiors232-portaudio.h"
+#include "audioport-portaudio.h"
 
 #include <stdio.h>
 
@@ -7,12 +7,12 @@
 #define FRAMES 8192
 #define BITLEN 8
 
-AudioRS232::AudioRS232()
+AudioPort::AudioPort()
 {
 	cb = new CyclicBuffer(16384);
 }
 
-AudioRS232::~AudioRS232()
+AudioPort::~AudioPort()
 {
 	Pa_StopStream(stream);
 	Pa_CloseStream(stream);
@@ -20,7 +20,7 @@ AudioRS232::~AudioRS232()
 	delete cb;
 }
 
-bool AudioRS232::start()
+bool AudioPort::start()
 {
 	if (paNoError != Pa_Initialize())
 		return false;
@@ -33,7 +33,7 @@ bool AudioRS232::start()
 
 int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void *userData)
 {
-	AudioRS232 *audio = (AudioRS232 *)userData;
+	AudioPort *audio = (AudioPort *)userData;
 	short *buf = (short *)outputBuffer;
 	for (unsigned long i = 0; i < framesPerBuffer / BITLEN / 16; ++i) {
 		//convertSend will write 16 * BITLEN frames
@@ -43,7 +43,7 @@ int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long frames
 	return paContinue;
 }
 
-void AudioRS232::send(const char *str)
+void AudioPort::send(const char *str)
 {
 	cb->put(str);
 }

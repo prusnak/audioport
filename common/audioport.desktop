@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=AudioPort
+Icon=audioport
+Exec=audioport

@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		presetButtons[i] = new PresetButton(this, i);
 	}
 
-	serial = new AudioRS232();
+	serial = new AudioPort();
 	qDebug() << serial->start();
 }
 
@@ -69,7 +69,7 @@ void MainWindow::on_editTX_returnPressed()
 
 void MainWindow::on_pushAbout_clicked()
 {
-	QMessageBox aboutBox(QMessageBox::NoIcon, "About Audio RS-232", QString::fromUtf8("Audio RS-232\n\nhackerspace brmlab - http://brmlab.cz/\n\nSee README for more info and COPYING for the license." ), QMessageBox::Ok, this);
+	QMessageBox aboutBox(QMessageBox::NoIcon, "About AudioPort", QString::fromUtf8("AudioPort\n\nhackerspace brmlab - http://brmlab.cz/\n\nSee README for more info and COPYING for the license." ), QMessageBox::Ok, this);
 	aboutBox.setIconPixmap(QPixmap(":/icons/icon.png"));
 	aboutBox.exec();
 }

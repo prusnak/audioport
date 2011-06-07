@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Audio RS-232</string>
+   <string>AudioPort</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.rc">

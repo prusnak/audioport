@@ -1,4 +1,4 @@
-#include "audiors232-common.h"
+#include "audioport-common.h"
 
 void convertSend(short *buf, short character, short value, int bitlen)
 {
