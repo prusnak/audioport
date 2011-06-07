@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		presetButtons[i] = new PresetButton(this, i);
 	}
 
-	serial = new AudioPort();
+	serial = new AudioPort(MODE_RS232);
 	qDebug() << serial->start();
 }
 

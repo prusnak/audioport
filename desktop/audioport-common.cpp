@@ -1,17 +1,21 @@
+#include <limits.h>
 #include "audioport-common.h"
 
-void convertSend(short *buf, short character, short value, int bitlen)
+#define MAX SHRT_MAX
+#define MIN SHRT_MIN
+
+void convertSendRS232(short *buf, short character, int bitlen)
 {
 	// start bit
 	for (int i = 0; i < bitlen; ++i) {
 		// left
 		if (character >= 0) {
-			*buf++ = +value;
+			*buf++ = MAX;
 		} else {
 			*buf++ = 0;
 		}
 		// right
-		*buf++ = -value;
+		*buf++ = MIN;
 	}
 
 	// send char
@@ -19,12 +23,12 @@ void convertSend(short *buf, short character, short value, int bitlen)
 		for (int i = 0; i < bitlen; ++i) {
 			// left
 			if (character >= 0) {
-				*buf++ = (character & (1 << b)) ? -value : +value;
+				*buf++ = (character & (1 << b)) ? MIN : MAX;
 			} else {
 				*buf++ = 0;
 			}
 			// right
-			*buf++ = (b % 2) ? -value : +value;
+			*buf++ = (b % 2) ? MIN : MAX;
 		}
 	}
 
@@ -32,12 +36,12 @@ void convertSend(short *buf, short character, short value, int bitlen)
 	for (int i = 0; i < bitlen; ++i) {
 		// left
 		if (character >= 0) {
-			*buf++ = -value;
+			*buf++ = MIN;
 		} else {
 			*buf++ = 0;
 		}
 		// right
-		*buf++ = +value;
+		*buf++ = MAX;
 	}
 
 	// wait
@@ -45,7 +49,25 @@ void convertSend(short *buf, short character, short value, int bitlen)
 		// left
 		*buf++ = 0;
 		// right
-		*buf++ = ((i / bitlen) % 2) ? +value : -value;
+		*buf++ = ((i / bitlen) % 2) ? MAX : MIN;
+	}
+}
+
+void convertSendCustom(short *buf, short character, int bitlen)
+{
+	for (int j = 0; j < 8; ++j) {
+		for (int i = 0; i < bitlen; ++i) {
+			// left
+			*buf++ = MAX;
+			// right
+			*buf++ = MIN;
+		}
+		for (int i = 0; i < bitlen; ++i) {
+			// left
+			*buf++ = MIN;
+			// right
+			*buf++ = MAX;
+		}
 	}
 }
 

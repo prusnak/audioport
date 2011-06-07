@@ -1,13 +1,10 @@
-#include <limits.h>
 #include "audioport-portaudio.h"
-
-#include <stdio.h>
 
 #define SAMPRATE 48000
 #define FRAMES 8192
 #define BITLEN 8
 
-AudioPort::AudioPort()
+AudioPort::AudioPort(AudioPortMode _mode) : mode(_mode)
 {
 	cb = new CyclicBuffer(16384);
 }
@@ -35,11 +32,24 @@ int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long frames
 {
 	AudioPort *audio = (AudioPort *)userData;
 	short *buf = (short *)outputBuffer;
-	for (unsigned long i = 0; i < framesPerBuffer / BITLEN / 16; ++i) {
-		//convertSend will write 16 * BITLEN frames
-		convertSend(buf, audio->cb->get(), SHRT_MAX, BITLEN);
-		buf += 16 * BITLEN * 2;
+
+	switch (audio->mode) {
+		case MODE_RS232:
+			for (unsigned long i = 0; i < framesPerBuffer / BITLEN / 16; ++i) {
+				//convertSendRS232 will write 16 * BITLEN frames
+				convertSendRS232(buf, audio->cb->get(), BITLEN);
+				buf += 16 * BITLEN * 2;
+			}
+			break;
+		case MODE_CUSTOM:
+			for (unsigned long i = 0; i < framesPerBuffer / BITLEN / 16; ++i) {
+				//convertSendCustom will write 16 * BITLEN frames
+				convertSendCustom(buf, audio->cb->get(), BITLEN);
+				buf += 16 * BITLEN * 2;
+			}
+			break;
 	}
+
 	return paContinue;
 }
 

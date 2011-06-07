@@ -7,11 +7,12 @@
 class AudioPort
 {
 public:
-	AudioPort();
+	AudioPort(AudioPortMode mode);
 	~AudioPort();
 	bool start();
 	void send(const char *str);
 	CyclicBuffer *cb;
+	AudioPortMode mode;
 private:
 	PaStream *stream;
 };
