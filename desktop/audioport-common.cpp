@@ -4,8 +4,11 @@
 #define MAX SHRT_MAX
 #define MIN SHRT_MIN
 
-void convertSendRS232(short *buf, short character, int bitlen)
+void convertSendRS232(short *buf, short character)
 {
+	const int bitlen = 3;
+	int idx = 0;
+
 	// start bit
 	for (int i = 0; i < bitlen; ++i) {
 		// left
@@ -28,7 +31,7 @@ void convertSendRS232(short *buf, short character, int bitlen)
 				*buf++ = MIN;
 			}
 			// right
-			*buf++ = (b % 2) ? MIN : MAX;
+			*buf++ = (idx++ % 8 < 4) ? MIN : MAX;
 		}
 	}
 
@@ -37,12 +40,25 @@ void convertSendRS232(short *buf, short character, int bitlen)
 		// left
 		*buf++ = MIN;
 		// right
-		*buf++ = MAX;
+		*buf++ = (idx++ % 8 < 4) ? MIN : MAX;
 	}
+
+	// filling
+	// left
+	*buf++ = 0;
+	// right
+	*buf++ = MAX;
+	// left
+	*buf++ = 0;
+	// right
+	*buf++ = MAX;
+
 }
 
-void convertSendCustom(short *buf, short character, int bitlen)
+void convertSendCustom(short *buf, short character)
 {
+	const int bitlen = 8;
+
 	for (int i = 0; i < bitlen; ++i) {
 		// left
 		*buf++ = MAX;

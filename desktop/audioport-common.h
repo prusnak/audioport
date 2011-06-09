@@ -7,8 +7,8 @@ enum AudioPortMode
 	MODE_CUSTOM
 };
 
-void convertSendRS232(short *buf, short character, int bitlen);
-void convertSendCustom(short *buf, short character, int bitlen);
+void convertSendRS232(short *buf, short character);
+void convertSendCustom(short *buf, short character);
 
 class CyclicBuffer
 {
