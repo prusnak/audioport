@@ -11,48 +11,39 @@ void convertSendRS232(short *buf, short character)
 
 	// start bit
 	for (int i = 0; i < bitlen; ++i) {
-		// left
 		if (character >= 0) {
+			*buf++ = MAX;
 			*buf++ = MAX;
 		} else {
 			*buf++ = MIN;
+			*buf++ = MIN;
 		}
-		// right
-		*buf++ = MIN;
 	}
 
 	// send char
 	for (int b = 0; b < 8; ++b) {
 		for (int i = 0; i < bitlen; ++i) {
-			// left
 			if (character >= 0) {
+				*buf++ = (character & (1 << b)) ? MIN : MAX;
 				*buf++ = (character & (1 << b)) ? MIN : MAX;
 			} else {
 				*buf++ = MIN;
+				*buf++ = MIN;
 			}
-			// right
-			*buf++ = (idx++ % 8 < 4) ? MIN : MAX;
 		}
 	}
 
 	// stop bit
 	for (int i = 0; i < bitlen; ++i) {
-		// left
 		*buf++ = MIN;
-		// right
-		*buf++ = (idx++ % 8 < 4) ? MIN : MAX;
+		*buf++ = MIN;
 	}
 
 	// filling
-	// left
-	*buf++ = 0;
-	// right
-	*buf++ = MAX;
-	// left
-	*buf++ = 0;
-	// right
-	*buf++ = MAX;
-
+	*buf++ = MIN;
+	*buf++ = MIN;
+	*buf++ = MIN;
+	*buf++ = MIN;
 }
 
 void convertSendCustom(short *buf, short character)
@@ -60,15 +51,11 @@ void convertSendCustom(short *buf, short character)
 	const int bitlen = 8;
 
 	for (int i = 0; i < bitlen; ++i) {
-		// left
 		*buf++ = MAX;
-		// right
-		*buf++ = MIN;
+		*buf++ = MAX;
 	}
 	for (int i = 0; i < bitlen; ++i) {
-		// left
-		*buf++ = MIN;
-		// right
+		*buf++ = MAX;
 		*buf++ = MAX;
 	}
 }
