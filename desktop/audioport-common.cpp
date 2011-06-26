@@ -6,11 +6,11 @@
 
 void convertSendRS232(short *buf, short character)
 {
-	const int bitlen = 3;
+	const int len = 3;
 	int idx = 0;
 
 	// start bit
-	for (int i = 0; i < bitlen; ++i) {
+	for (int i = 0; i < len; ++i) {
 		if (character >= 0) {
 			*buf++ = MAX;
 			*buf++ = MAX;
@@ -22,7 +22,7 @@ void convertSendRS232(short *buf, short character)
 
 	// send char
 	for (int b = 0; b < 8; ++b) {
-		for (int i = 0; i < bitlen; ++i) {
+		for (int i = 0; i < len; ++i) {
 			if (character >= 0) {
 				*buf++ = (character & (1 << b)) ? MIN : MAX;
 				*buf++ = (character & (1 << b)) ? MIN : MAX;
@@ -34,7 +34,7 @@ void convertSendRS232(short *buf, short character)
 	}
 
 	// stop bit
-	for (int i = 0; i < bitlen; ++i) {
+	for (int i = 0; i < len; ++i) {
 		*buf++ = MIN;
 		*buf++ = MIN;
 	}
@@ -46,17 +46,48 @@ void convertSendRS232(short *buf, short character)
 	*buf++ = MIN;
 }
 
-void convertSendCustom(short *buf, short character)
+void convertSendManchester(short *buf, short character)
 {
-	const int bitlen = 8;
-
-	for (int i = 0; i < bitlen; ++i) {
-		*buf++ = MAX;
-		*buf++ = MAX;
+	const int len = 4;
+	for (int b = 0; b < 8; ++b) {
+		for (int i = 0; i < len; ++i) {
+			if (character >= 0) {
+				*buf++ = (character & (1 << b)) ? MAX : MIN;
+				*buf++ = (character & (1 << b)) ? MAX : MIN;
+			} else {
+				*buf++ = 0;
+				*buf++ = 0;
+			}
+		}
+		for (int i = 0; i < len; ++i) {
+			if (character >= 0) {
+				*buf++ = (character & (1 << b)) ? MIN : MAX;
+				*buf++ = (character & (1 << b)) ? MIN : MAX;
+			} else {
+				*buf++ = 0;
+				*buf++ = 0;
+			}
+		}
 	}
-	for (int i = 0; i < bitlen; ++i) {
-		*buf++ = MAX;
-		*buf++ = MAX;
+}
+
+void convertSendRZ(short *buf, short character)
+{
+	const int len = 4;
+	for (int b = 0; b < 8; ++b) {
+		for (int i = 0; i < len; ++i) {
+			if (character >= 0) {
+				*buf++ = (character & (1 << b)) ? MAX : MIN;
+				*buf++ = (character & (1 << b)) ? MAX : MIN;
+			} else {
+				*buf++ = 0;
+				*buf++ = 0;
+			}
+		}
+		for (int i = 0; i < len; ++i) {
+			*buf++ = 0;
+			*buf++ = 0;
+		}
 	}
 }
 

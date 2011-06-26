@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-#define SAMPRATE 48000
+#define SAMPRATE 44100
 #define FRAMES 8192
 
 AudioPort::AudioPort(AudioPortMode _mode) : mode(_mode)
@@ -42,11 +42,18 @@ int paCallback(const void *inputBuffer, void *outputBuffer, unsigned long frames
 				buf += 2 * 32;
 			}
 			break;
-		case MODE_CUSTOM:
-			//convertSendCustom will write 16 frames
-			for (unsigned long i = 0; i < framesPerBuffer/16; ++i) {
-				convertSendCustom(buf, audio->cb->get());
-				buf += 2 * 16;
+		case MODE_MANCHESTER:
+			//convertSendCustom will write 64 frames
+			for (unsigned long i = 0; i < framesPerBuffer/64; ++i) {
+				convertSendManchester(buf, audio->cb->get());
+				buf += 2 * 64;
+			}
+			break;
+		case MODE_RZ:
+			//convertSendCustom will write 64 frames
+			for (unsigned long i = 0; i < framesPerBuffer/64; ++i) {
+				convertSendRZ(buf, audio->cb->get());
+				buf += 2 * 64;
 			}
 			break;
 	}

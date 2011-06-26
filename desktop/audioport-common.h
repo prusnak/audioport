@@ -4,11 +4,13 @@
 enum AudioPortMode
 {
 	MODE_RS232,
-	MODE_CUSTOM
+	MODE_MANCHESTER,
+	MODE_RZ
 };
 
 void convertSendRS232(short *buf, short character);
-void convertSendCustom(short *buf, short character);
+void convertSendManchester(short *buf, short character);
+void convertSendRZ(short *buf, short character);
 
 class CyclicBuffer
 {
