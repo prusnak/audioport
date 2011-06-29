@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		presetButtons[i] = new PresetButton(this, i);
 	}
 
-	serial = new AudioPort(MODE_RZ);
+	serial = new AudioPort(MODE_MANCHESTER);
 	qDebug() << serial->start();
 }
 
